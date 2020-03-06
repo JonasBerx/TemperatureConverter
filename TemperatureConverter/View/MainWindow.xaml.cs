@@ -27,7 +27,24 @@ namespace View
 
         private void ConvertToCelcius(object sender, RoutedEventArgs e)
         {
-            textBox.Text = "You clicked the button";
+            var fahr = double.Parse(textBox.Text);
+
+
+            var cels = (fahr - 32) * 5 / 9;
+
+            Console.Write(cels);
+            textBox.Text =cels.ToString();
+        }
+
+        private void ConvertToFahrenheit(object sender, RoutedEventArgs e)
+        {
+            var cels = double.Parse(textBox.Text);
+
+
+            var fahr = (cels * 9) / 5 + 32;
+
+            Console.Write(fahr);
+            textBox.Text = fahr.ToString();
         }
     }
 }
