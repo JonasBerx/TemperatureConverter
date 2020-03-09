@@ -45,7 +45,6 @@ namespace View
         {
             var kelvin = (double)value;
             var celsius = kelvin - 273.15;
-
             return celsius;
         }
 
@@ -54,6 +53,24 @@ namespace View
             var celsius = double.Parse((string)value);
             var kelvin = celsius + 273.15;
 
+            return kelvin;
+        }
+    }
+
+    public class FahrenheitConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var kelvin = (double)value;
+            var celsius = kelvin - 273.15;
+            var fahr = celsius * 1.8 + 32;
+            return fahr;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var fahr = double.Parse((string)value);
+            var kelvin = 273.15 + (5 / 9) * (fahr - 32);
             return kelvin;
         }
     }
