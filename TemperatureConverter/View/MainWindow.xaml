@@ -6,9 +6,73 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="labelStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="Gray" Offset="0" />
+                        <GradientStop Color="White" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="2" />
+        </Style>
+        <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="boxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            
+        </Style>
+        
+
+    </Window.Resources>
     <StackPanel>
-        <TextBox x:Name="textBox"/>
-        <Button Content="Convert to Celsius" Click="ConvertToCelcius"/>
-        <Button Content="Convert to Fahrenheit" Click="ConvertToFahrenheit"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="celsiusTextBox" Text="{Binding ElementName=celsiusTextBox, Path=Text, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource boxStyle}" />
+            
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1"  x:Name="fahrenheitTextBox" Style="{StaticResource boxStyle}" />
+            
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
+            <TextBox Grid.Row="1" Text="{Binding ElementName=sliderValue, Path=Value, UpdateSourceTrigger=PropertyChanged}"  x:Name="kelvinTextBox" Style="{StaticResource boxStyle}" />
+        </Grid>
+        <Slider Minimum="0" Maximum="1000" ValueChanged="Convert" x:Name="sliderValue">
+        </Slider>
+        
     </StackPanel>
+    
 </Window>
