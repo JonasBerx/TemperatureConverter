@@ -28,7 +28,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
             
         </Style>
-        
+        <local:CelsiusConverter x:Key="celsiusConverter" />
 
     </Window.Resources>
     <StackPanel>
