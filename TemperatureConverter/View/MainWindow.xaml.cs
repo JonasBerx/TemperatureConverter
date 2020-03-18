@@ -27,11 +27,10 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
-            ConverterViewModel v = new ConverterViewModel();
+            this.DataContext = new ConverterViewModel();
 
-            this.DataContext = v;
         }
-       
+
 
 
     }

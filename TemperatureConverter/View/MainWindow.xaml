@@ -40,7 +40,7 @@
         </local:TempConverter>
     </Window.Resources>
     <StackPanel>
-        <Grid>
+        <Grid DataContext="{Binding Celsius}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -49,9 +49,9 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Celsius" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=TemperatureInKelvin, Converter={StaticResource celsiusConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-        <Grid>
+        <Grid DataContext="{Binding Fahrenheit}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -60,9 +60,9 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Fahrenheit" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=TemperatureInKelvin, Converter={StaticResource fahrenheitConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1" Style="{StaticResource textBoxStyle}" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-        <Grid>
+        <Grid DataContext="{Binding Kelvin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -71,7 +71,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Kelvin" Style="{StaticResource labelStyle}" />
-            <TextBox Grid.Row="1" Text="{Binding Path=TemperatureInKelvin, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}" />
+            <TextBox Grid.Row="1" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}" />
         </Grid>
         <Slider x:Name="slider" Value="{Binding Path=TemperatureInKelvin}" Minimum="0" Maximum="1000" />
     </StackPanel>
