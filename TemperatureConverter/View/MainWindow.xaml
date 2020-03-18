@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         x:Name="mainWindow"
         Title="MainWindow" Height="350" Width="525">
@@ -28,16 +27,17 @@
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="16" />
         </Style>
-        <local:TempConverter x:Key="celsiusConverter">
-            <local:TempConverter.TemperatureScale>
+        <local:TemperatureConverter x:Key="celsiusConverter">
+            <local:TemperatureConverter.TemperatureScale>
                 <local:CelsiusTemperatureScale />
-            </local:TempConverter.TemperatureScale>
-        </local:TempConverter>
-        <local:TempConverter x:Key="fahrenheitConverter">
-            <local:TempConverter.TemperatureScale>
-                <local:FahrenheitTemperatureScale />
-            </local:TempConverter.TemperatureScale>
-        </local:TempConverter>
+            </local:TemperatureConverter.TemperatureScale>
+        </local:TemperatureConverter>
+        <local:TemperatureConverter x:Key="fahrenheitConverter">
+            <local:TemperatureConverter.TemperatureScale>
+                <local:FahrenheitConverter />
+            </local:TemperatureConverter.TemperatureScale>
+        </local:TemperatureConverter>
+
     </Window.Resources>
     <StackPanel>
         <ItemsControl ItemsSource="{Binding Scales}">
