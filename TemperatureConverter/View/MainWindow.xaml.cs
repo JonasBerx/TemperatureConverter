@@ -27,6 +27,21 @@ namespace View
         }
     }
 
+    public class TemperatureConverter : ITemperatureScale
+    {
+        public string Name => "";
+
+        public double ConvertFromKelvin(double temperature)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double ConvertToKelvin(double temperature)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class CelsiusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
