@@ -27,16 +27,6 @@
         <Style x:Key="buttonStyle" TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="16" />
         </Style>
-        <local:TemperatureConverter x:Key="celsiusConverter">
-            <local:TemperatureConverter.TemperatureScale>
-                <local:CelsiusTemperatureScale />
-            </local:TemperatureConverter.TemperatureScale>
-        </local:TemperatureConverter>
-        <local:TemperatureConverter x:Key="fahrenheitConverter">
-            <local:TemperatureConverter.TemperatureScale>
-                <local:FahrenheitConverter />
-            </local:TemperatureConverter.TemperatureScale>
-        </local:TemperatureConverter>
 
     </Window.Resources>
     <StackPanel>
@@ -52,7 +42,7 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" Text="{Binding Name}" Style="{StaticResource labelStyle}"/>
-                        <TextBlock Grid.Row="1" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}"/>
+                        <TextBox Grid.Row="1" Text="{Binding Path=Temperature, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource textBoxStyle}"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
