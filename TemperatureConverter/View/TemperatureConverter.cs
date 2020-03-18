@@ -11,13 +11,11 @@ namespace View
         string Name { get; }
 
         double ConvertToKelvin(double temperature);
+
         double ConvertFromKelvin(double temperature);
-
-        
-
     }
 
-    class KelvinTemperatureScale : ITemperatureScale
+    public class KelvinTemperatureScale : ITemperatureScale
     {
         public string Name => "Kelvin";
 
@@ -32,9 +30,9 @@ namespace View
         }
     }
 
-    class CelsiusTemperatureScale : ITemperatureScale
+    public class CelsiusTemperatureScale : ITemperatureScale
     {
-        public string Name => "Kelvin"
+        public string Name => "Celsius";
 
         public double ConvertFromKelvin(double temperature)
         {
@@ -47,18 +45,18 @@ namespace View
         }
     }
 
-    class FahrenheitTemperatureScale : ITemperatureScale
+    public class FahrenheitTemperatureScale : ITemperatureScale
     {
         public string Name => "Fahrenheit";
 
         public double ConvertFromKelvin(double temperature)
         {
-            return temperature * 1.8 - 459.67;
+            return temperature * 1.8 - 459.67; ;
         }
 
         public double ConvertToKelvin(double temperature)
         {
-            return (temperature + 549.67) / 1.8;
+            return (temperature + 459.67) / 1.8;
         }
     }
 }
