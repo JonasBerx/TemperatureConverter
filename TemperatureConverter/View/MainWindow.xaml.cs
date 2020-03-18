@@ -27,7 +27,7 @@ namespace View
         }
     }
 
-    public class TemperatureConverter : IValueConverter
+    public class TempConverter : IValueConverter
     {
         public ITemperatureScale TemperatureScale { get; set; }
 
