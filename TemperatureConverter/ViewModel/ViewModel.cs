@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace View
 {
-    public class ConverterViewModel : INotifyPropertyChanged
+    public class ConverterViewModel
     {
+        
         public ConverterViewModel()
         {
-            this.Kelvin = new TemperatureScaleViewModel(this, new KelvinTemperatureScale());
+            this.Kelvin = new Cell<double>(this, new KelvinTemperatureScale());
             this.Celsius = new TemperatureScaleViewModel(this, new CelsiusTemperatureScale());
             this.Fahrenheit = new TemperatureScaleViewModel(this, new FahrenheitTemperatureScale());
         }
@@ -21,7 +19,7 @@ namespace View
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public double TemperatureInKelvin
+        public Cell<double> TemperatureInKelvin
         {
             get
             {
