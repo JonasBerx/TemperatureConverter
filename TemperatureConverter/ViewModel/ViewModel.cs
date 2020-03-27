@@ -1,7 +1,8 @@
 ﻿using Cells;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Windows.Input;
 
 namespace View
 {
@@ -47,13 +48,58 @@ namespace View
             this.parent = parent;
             this.temperatureScale = temperatureScale;
             this.Temperature = this.parent.TemperatureInKelvin.Derive(kelvin => temperatureScale.ConvertFromKelvin(kelvin), t => temperatureScale.ConvertToKelvin(t));
+
+            var minimum = temperatureScale.ConvertFromKelvin(0);
+            var maximum = temperatureScale.ConvertFromKelvin(1000);
+            this.Increment = new AddCommand(this.Temperature, 1, minimum, maximum);
+            this.Decrement = new AddCommand(this.Temperature, -1, minimum, maximum);
         }
 
         public string Name => temperatureScale.Name;
 
+        
+
         public Cell<double> Temperature { get; }
         public event PropertyChangedEventHandler PropertyChanged;
+        public ICommand Increment { get; }
+
+        public ICommand Decrement { get; }
     }
 
 
+
+    public class AddCommand : ICommand
+    {
+        private readonly Cell<double> cell;
+
+        private readonly int delta;
+
+        private readonly double minimum;
+
+        private readonly double maximum;
+
+        public AddCommand(Cell<double> cell, int delta, double minimum, double maximum)
+        {
+            this.cell = cell;
+            this.delta = delta;
+            this.minimum = minimum;
+            this.maximum = maximum;
+
+            this.cell.PropertyChanged += (sender, args) => CanExecuteChanged(this, new EventArgs());
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
+        {
+            var newValue = cell.Value + delta;
+
+            return minimum <= newValue && newValue <= maximum;
+        }
+
+        public void Execute(object parameter)
+        {
+            cell.Value = Math.Round(cell.Value + delta);
+        }
+    }
 }
